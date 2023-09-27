@@ -1,37 +1,30 @@
 <template>
   <div class="app-container">
-    <el-table
-      v-loading="listLoading"
-      :data="list"
-      element-loading-text="Loading"
-      border
-      fit
-      highlight-current-row
-    >
+    <el-table v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label="Index" width="95">
         <template slot-scope="scope">
-          {{  scope.$index + limit * (current - 1)  }}
+          {{ scope.$index + limit*(current-1) }}
         </template>
       </el-table-column>
       <el-table-column label="AssetNumber">
         <template slot-scope="scope">
-          {{ scope.row.asset.assetNumber }}
+          {{ scope.row.assetNumber }}
         </template>
       </el-table-column>
       <el-table-column label="AssetName">
         <template slot-scope="scope">
-          {{ scope.row.asset.assetName }}
+          {{ scope.row.assetName }}
         </template>
       </el-table-column>
-      <el-table-column label="Specification"  align="center">
+      <el-table-column label="UserNumber" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.asset.specification }}</span>
+          <span>{{ scope.row.userNumber }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="Quantity" align="center">
+      <el-table-column label="UserName" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.asset.quantity }}</span>
+          <span>{{ scope.row.userName }}</span>
         </template>
       </el-table-column>
 
@@ -41,13 +34,13 @@
         </template>
       </el-table-column>
 
-        <!-- <el-table-column label="Status" align="center">
+      <!-- <el-table-column label="Status" align="center">
           <template slot-scope="scope">
             <span>{{ scope.row.statusName }}</span>
           </template>
         </el-table-column> -->
 
-<!--
+      <!--
       <el-table-column label="Pageviews" width="110" align="center">
         <template slot-scope="scope">
           {{ scope.row.pageviews }}
@@ -73,30 +66,17 @@
 
       <el-table-column label="操作" width="280" align="center">
         <template slot-scope="scope">
-          <el-button
-            type="danger"
-            size="mini"
-            icon="el-icon-delete"
+          <el-button type="danger" size="mini" icon="el-icon-delete"
             @click="removeDataById(scope.row.asset.id)">删除</el-button>
           <router-link :to="'/asset_infomation/add?id=' + scope.row.asset.id">
-            <el-button
-              type="primary"
-              size="mini"
-              icon="el-icon-edit"
-             @click="updateDataById(scope.row.asset.id)"
-            >修改</el-button>
+            <el-button type="primary" size="mini" icon="el-icon-edit"
+              @click="updateDataById(scope.row.asset.id)">修改</el-button>
           </router-link>
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination
-      :current-page="current"
-      :page-size="limit"
-      :total="total"
-      style="padding:30px 0;text-align:center;"
-      layout="total,prev,pager,next,jumper"
-      @current-change="togglePageList"
-    />
+    <el-pagination :current-page="current" :page-size="limit" :total="total" style="padding:30px 0;text-align:center;"
+      layout="total,prev,pager,next,jumper" @current-change="togglePageList" />
   </div>
 </template>
 
@@ -138,7 +118,7 @@ export default {
         this.listLoading = false
       })
     },
-    togglePageList(page=1) {
+    togglePageList(page = 1) {
       this.current = page
       assetApi
         .pageAssets(this.current, this.limit, this.searchObj)
@@ -154,13 +134,13 @@ export default {
           console.log('出错了')
           console.log(error)
         })
-      console.log("toggle to page:"+page)
+      console.log("toggle to page:" + page)
 
     },
     removeDataById(id) {
 
 
-       this.$confirm('此操作将永久删除仓库物品信息,是否继续?', '提示', {
+      this.$confirm('此操作将永久删除仓库物品信息,是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -175,14 +155,14 @@ export default {
 
         console.log("if toggle?")
         window.location.reload()
-       // this.togglePageList(this.current);
+        // this.togglePageList(this.current);
       })
 
 
 
     },
     updateDataById(id) {
-      this.$router.push({ path: `/asset_information/add?id=${id}`})
+      this.$router.push({ path: `/asset_information/add?id=${id}` })
 
     }
 

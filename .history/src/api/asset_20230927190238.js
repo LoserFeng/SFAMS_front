@@ -23,7 +23,8 @@ export default {
       url: `/asset/details/${id}`,
       method: 'get'
     })
-  },
+}
+,
 
   removeAssetById(id) {
     return request({

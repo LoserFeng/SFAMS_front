@@ -139,7 +139,7 @@ export const constantRoutes = [
       },
       {
         path: '/verification/check',
-        name: 'VerificationCheck',
+        name: 'Assetlend',
         component: () => import('@/views/verification/check/index'),
         meta: { title: '资产核查', icon: 'tree' }
       }

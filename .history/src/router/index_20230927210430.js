@@ -135,13 +135,19 @@ export const constantRoutes = [
         path: '/verification/records',
         name: 'VerificationRecords',
         component: () => import('@/views/verification/records/index'),
-        meta: { title: '资产核查记录列表', icon: 'table' }
+        meta: { title: '资产租借记录列表', icon: 'table' }
       },
       {
         path: '/verification/check',
-        name: 'VerificationCheck',
+        name: 'Assetlend',
         component: () => import('@/views/verification/check/index'),
-        meta: { title: '资产核查', icon: 'tree' }
+        meta: { title: '资产借出', icon: 'tree' }
+      },
+      {
+        path: '/asset_lease/revert',
+        name: 'Assetrevert',
+        component: () => import('@/views/asset_lease/revert/index'),
+        meta: { title: '资产归还', icon: 'tree' }
       }
     ]
   },

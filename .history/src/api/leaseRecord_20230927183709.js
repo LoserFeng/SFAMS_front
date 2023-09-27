@@ -10,9 +10,9 @@ import request from '@/utils/request'
 
 export default {
 
-  pageAssets(page, limit, obj) {
+  pageRecords(page, limit, obj) {
     return request({
-      url: `/asset/page/${page}/${limit}`,
+      url: `/assetLease/page/${page}/${limit}`,
       method: 'get',
       params: obj
     })
@@ -23,7 +23,8 @@ export default {
       url: `/asset/details/${id}`,
       method: 'get'
     })
-  },
+  }
+  ,
 
   removeAssetById(id) {
     return request({

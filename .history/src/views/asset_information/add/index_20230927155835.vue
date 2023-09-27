@@ -137,8 +137,6 @@ export default {
 
           })
       }
-
-      this.$router.push({ path: `/asset_infomation/list` })
     },
     upload(file) {
 

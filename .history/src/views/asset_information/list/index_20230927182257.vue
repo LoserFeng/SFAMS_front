@@ -10,7 +10,7 @@
     >
       <el-table-column align="center" label="Index" width="95">
         <template slot-scope="scope">
-          {{  scope.$index + limit * (current - 1)  }}
+          {{  scope.$index + this.limit * (this.current - 1)  }}
         </template>
       </el-table-column>
       <el-table-column label="AssetNumber">

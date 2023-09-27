@@ -1,66 +1,29 @@
 <template>
   <div class="app-container">
-    <h3 align="center">固定资产录入</h3>
+    <h3 align="center">固定资产借出</h3>
     <el-form label-width="120px">
-      <el-form-item label="资产名称">
-        <el-input v-model="assetVo.asset.assetName" />
+      <el-form-item label="资产编号">
+        <el-input v-model="record.assetNumber" />
       </el-form-item>
 
-      <el-form-item label="资产类型">
-        <!-- 一级分类 -->
-        <el-select v-model="assetVo.asset.assetCategoryId" placeholder="请选择">
-          <el-option v-for="subject in assetCategoryList" :key="subject.id" :label="subject.categoryName" :value="subject.id" />
-        </el-select>
+      <el-form-item label="借用人编号">
+        <el-input v-model="record.userNumber" />
       </el-form-item>
-      <el-form-item label="资产原值">
-        <el-input v-model="assetVo.asset.originValue" />
-      </el-form-item>
-      <el-form-item label="规格">
-         <el-input v-model="assetVo.asset.specification" />
-      </el-form-item>
-      <el-form-item label="品牌 型号">
-          <el-input v-model="assetVo.asset.brandModel" />
-      </el-form-item>
-      <el-form-item label="物品图示">
-        <el-upload :show-file-list="false" :on-success="handleCoverSuccess" :before-upload="beforeCoverUpload"
-          :on-error="handleCoverError" class="cover-uploader"
-          action="http://localhost:8081/system/upload"
-          >
-          <img v-if="assetVo.asset.assetPhoto" :src="assetVo.asset.assetPhoto">
-          <i v-else class="el-icon-plus avatar-uploader-icon" />
-        </el-upload>
-      </el-form-item>
-      <el-form-item label="数量">
-        <el-input v-model="assetVo.asset.quantity" />
-      </el-form-item>
-      <el-form-item label="预计使用年限">
-        <el-input v-model="assetVo.asset.expectedLife" />
-      </el-form-item>
-      <el-form-item label="购置日期" required>
-        <el-date-picker
-            v-model="assetVo.asset.acquisitionDate"
-            type="datetime"
-            placeholder="选择日期时间"
-            default-time="12:00:00">
+
+      <el-form-item label="预计归还日期" required>
+        <el-date-picker v-model="record.dueDate" type="datetime" placeholder="选择日期时间"
+          default-time="12:00:00">
         </el-date-picker>
       </el-form-item>
 
-      <el-form-item label="备注">
-        <el-input v-model="assetVo.asset.notes" />
-      </el-form-item>
-      <el-form-item label="使用人">
-        <el-input v-model="assetVo.asset.userNumber" />
-      </el-form-item>
-        <el-form-item label="部门单位">
-          <!-- 一级分类 -->
-          <el-select v-model="assetVo.asset.departmentId" placeholder="请选择">
-            <el-option v-for="subject in departmentList" :key="subject.id" :label="subject.departmentName" :value="subject.id" />
-          </el-select>
+        <el-form-item label="备注">
+          <el-input v-model="record.notes" />
         </el-form-item>
 
 
+
       <el-form-item>
-        <el-button type="primary" @click="saveOrUpdate">保存
+        <el-button type="primary" @click="saveOrUpdate">确认
         </el-button></el-form-item>
     </el-form>
   </div>
@@ -74,11 +37,10 @@ import fileApi from '@/api/file'
 export default {
   data() {
     return {
-      assetVo: { "asset": {} },
-      assetCategoryList: [], // 种类列表
-      departmentList: [],
+      record: {},
+
       assetId: null,
-      assetNumber:null
+      assetNumber: null
 
     }
   },
@@ -105,7 +67,7 @@ export default {
     },
     init() {
       assetApi.getAssetById(this.assetId).then(response => {
-        this.assetVo = {"asset": response.data.asset }
+        this.assetVo = { "asset": response.data.asset }
       })
     },
     saveOrUpdate() {
@@ -143,7 +105,7 @@ export default {
     upload(file) {
 
       fileApi.fileUpload(file).then(r => {
-        this.assetVo.asset.assetPhoto=r.data
+        this.assetVo.asset.assetPhoto = r.data
       })
 
     }

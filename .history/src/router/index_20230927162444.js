@@ -116,35 +116,14 @@ export const constantRoutes = [
         meta: { title: '资产借出', icon: 'tree' }
       },
       {
-        path: '/asset_lease/revert',
-        name: 'Assetrevert',
-        component: () => import('@/views/asset_lease/revert/index'),
+        path: '/asset_lease/return',
+        name: 'AssetReturn',
+        component: () => import('@/views/asset_lease/return/index'),
         meta: { title: '资产归还', icon: 'tree' }
       }
     ]
   },
 
-  {
-    path: '/verification',
-    component: Layout,
-    redirect: '/verification/records',
-    name: 'AssetVerification',
-    meta: { title: '资产核查', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: '/verification/records',
-        name: 'VerificationRecords',
-        component: () => import('@/views/verification/records/index'),
-        meta: { title: '资产核查记录列表', icon: 'table' }
-      },
-      {
-        path: '/verification/check',
-        name: 'VerificationCheck',
-        component: () => import('@/views/verification/check/index'),
-        meta: { title: '资产核查', icon: 'tree' }
-      }
-    ]
-  },
 
 
   {

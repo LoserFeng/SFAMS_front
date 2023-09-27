@@ -97,54 +97,27 @@ export const constantRoutes = [
   },
 
   {
-    path: '/asset_lease',
+    path: '/asset_leasing',
     component: Layout,
-    redirect: '/asset_lease/records',
-    name: 'Assetlease',
+    redirect: '/asset_leasing/records',
+    name: 'AssetLeasing',
     meta: { title: '资产租借', icon: 'el-icon-s-help' },
     children: [
       {
-        path: '/asset_lease/records',
-        name: 'AssetleaseRecords',
-        component: () => import('@/views/asset_lease/records/index'),
-        meta: { title: '资产租借记录列表', icon: 'table' }
+        path: '/asset_leasing/records',
+        name: 'AssetLeasingRecords',
+        component: () => import('@/views/asset_information/list/index'),
+        meta: { title: '资产信息列表', icon: 'table' }
       },
       {
-        path: '/asset_lease/lend',
-        name: 'Assetlend',
-        component: () => import('@/views/asset_lease/lend/index'),
-        meta: { title: '资产借出', icon: 'tree' }
-      },
-      {
-        path: '/asset_lease/revert',
-        name: 'Assetrevert',
-        component: () => import('@/views/asset_lease/revert/index'),
-        meta: { title: '资产归还', icon: 'tree' }
+        path: '/asset_leasing/lending',
+        name: 'AssetLending',
+        component: () => import('@/views/asset_information/add/index'),
+        meta: { title: '资产信息录入', icon: 'tree' }
       }
     ]
   },
 
-  {
-    path: '/verification',
-    component: Layout,
-    redirect: '/verification/records',
-    name: 'AssetVerification',
-    meta: { title: '资产核查', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: '/verification/records',
-        name: 'VerificationRecords',
-        component: () => import('@/views/verification/records/index'),
-        meta: { title: '资产核查记录列表', icon: 'table' }
-      },
-      {
-        path: '/verification/check',
-        name: 'VerificationCheck',
-        component: () => import('@/views/verification/check/index'),
-        meta: { title: '资产核查', icon: 'tree' }
-      }
-    ]
-  },
 
 
   {

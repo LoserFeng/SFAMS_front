@@ -10,33 +10,27 @@ import request from '@/utils/request'
 
 export default {
 
-  pageAssets(page, limit, obj) {
+  pageRecords(page, limit, obj) {
     return request({
-      url: `/asset/page/${page}/${limit}`,
+      url: `/assetLease/page/${page}/${limit}`,
       method: 'get',
       params: obj
     })
   },
-
-  getAssetById(id) {
+  lend(assetLeaseRecord) {
     return request({
-      url: `/asset/details/${id}`,
-      method: 'get'
-    })
-  },
-
-  removeAssetById(id) {
-    return request({
-      url: `/asset/remove/${id}`,
-      method: 'delete'
-    })
-  },
-  addAsset(asset) {
-    return request({
-      url: `/asset/input`,
+      url: `/assetLease/lend`,
       method: 'post',
-      data: asset
+      data: assetLeaseRecord
     })
+  },
+  revert(assetNumber) {
+    return request({
+      url: `/assetLease/revert`,
+      method: 'post',
+      params: assetNumber
+    })
+
   }
 
 }
